@@ -12,7 +12,7 @@ A couple screenshots:
 Disclaimer
 ===
 
-This software was used internally for long time, so some feature can look strange or overcomplicated.
+This software was used internally for long time, so some feature can look strange, overcomplicated or partially implemented. You can ask me for details and/or small fixes.
 
 How-To Install
 ===
