@@ -1,8 +1,5 @@
 # TortoiseRally
 
-About TortoiseRally
-==
-
 TortoiseRally is a (relatively) simple TortoiseSVN plugin, for integrate with [Rally Software ALM](https://www.rallydev.com/).
 
 A couple screenshots:
