@@ -3,19 +3,12 @@
 How-To install
 
 1. Right click on checkedout trunk (or other branch) and select SVN Properties
-
 ![Screen](http://azarkevich.github.io/TortoiseRally/UserGuide/Step1.png)
-
 2. Download file http://azarkevich.github.io/TortoiseRally/UserGuide/TortoiseRally.svnprops to some location
-
 3. Click import and select downloaded file:
-
 ![Screen](http://azarkevich.github.io/TortoiseRally/UserGuide/Step2.png)
-
 4. Double click on any added properties for check settings:
-
 ![Screen](http://azarkevich.github.io/TortoiseRally/UserGuide/Step3.png)
-
 5. Commit added properties
 6. Now, on commit dialog should appears new button 'Choose Issue(s)':
 ![Screen](http://azarkevich.github.io/TortoiseRally/UserGuide/Step4.png)
