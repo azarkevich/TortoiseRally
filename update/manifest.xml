@@ -2,7 +2,7 @@
 	<version>5.0</version>
 	<changelog>changelog.txt</changelog>
 	<setup>https://github.com/azarkevich/TortoiseRally/releases/download/v5.0/Setup.msi</setup>
-	<download>https://github.com/azarkevich/TortoiseRally/releases/download/v5.0/</download>
+	<download>https://github.com/azarkevich/TortoiseRally/releases/tag/v5.0</download>
 </manifest>
 
 
