@@ -11,21 +11,21 @@ A couple screenshots:
 
 
 System Requirements
-===
+----
 
 Require .NET Framework 4.0, supports only x64 platform.
 
 Disclaimer
-===
+----
 
 This software was used internally for long time, so some feature can look strange, overcomplicated or partially implemented. You can ask me for details and/or small fixes.
 
 How-To Install
-===
+----
 
 [Installation Guide](https://github.com/azarkevich/TortoiseRally/blob/gh-pages/UserGuide/Installation/HowToInstall.md)
 
 Advanced Usage
-===
+----
 
 [Advanced Usage](https://github.com/azarkevich/TortoiseRally/blob/gh-pages/UserGuide/Advanced/AdvancedUsage.md)
