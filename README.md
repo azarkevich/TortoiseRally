@@ -1,6 +1,19 @@
 # TortoiseRally
 
+What is TortoiseRally
+==
+
+TortoiseRally is a (relatively) simple TortoiseSVN plugin, for integrate with [Rally Software ALM](https://www.rallydev.com/).
+
+A couple screenshots:
+
+![Screen](http://azarkevich.github.io/TortoiseRally/UserGuide/Step6.png)
+![Screen](http://azarkevich.github.io/TortoiseRally/UserGuide/Step7.png)
+![Screen](http://azarkevich.github.io/TortoiseRally/UserGuide/Step8.png)
+
+
 How-To install
+==
 
 1. Right click on checkedout trunk (or other branch) and select SVN Properties
 ![Screen](http://azarkevich.github.io/TortoiseRally/UserGuide/Step1.png)
