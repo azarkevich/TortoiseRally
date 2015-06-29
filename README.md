@@ -17,4 +17,4 @@ This software was used internally for long time, so some feature can look strang
 How-To Install
 ===
 
-[Installation Guide](http://azarkevich.github.io/TortoiseRally/UserGuide/Installation/HowToInstall.md)
+[Installation Guide](https://github.com/azarkevich/TortoiseRally/blob/gh-pages/UserGuide/Installation/HowToInstall.md)
