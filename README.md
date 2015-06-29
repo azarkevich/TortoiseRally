@@ -18,3 +18,8 @@ How-To Install
 ===
 
 [Installation Guide](https://github.com/azarkevich/TortoiseRally/blob/gh-pages/UserGuide/Installation/HowToInstall.md)
+
+Advanced Usage
+===
+
+[Advanced Usage](https://github.com/azarkevich/TortoiseRally/blob/gh-pages/UserGuide/Advanced/AdvancedUsage.md)
