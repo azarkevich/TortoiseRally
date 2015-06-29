@@ -1,0 +1,8 @@
+<manifest>
+	<version>5.0</version>
+	<changelog>changelog.txt</changelog>
+	<setup>Setup-5.0.msi</setup>
+	<download>https://TBD</download>
+</manifest>
+
+
