@@ -45,7 +45,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="UpdateManifestUrl" Provider="TrackGearLibrary.Core.MySettingProvider" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">http://azarkevich.github.io/TortoiseRally/update/manifest.xml</Value>
     </Setting>
     <Setting Name="BuildsBoardUri" Provider="TrackGearLibrary.Core.MySettingProvider" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

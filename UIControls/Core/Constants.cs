@@ -2,6 +2,6 @@
 {
 	public class Constants
 	{
-		public const string AppDataDirName = @"RallyTools";
+		public const string AppDataDirName = @"TortoiseRally";
 	}
 }

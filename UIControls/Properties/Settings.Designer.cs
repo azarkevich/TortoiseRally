@@ -201,7 +201,7 @@ namespace RallyToolsCore.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Configuration.SettingsProviderAttribute(typeof(TrackGearLibrary.Core.MySettingProvider))]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://azarkevich.github.io/TortoiseRally/update/manifest.xml")]
         public string UpdateManifestUrl {
             get {
                 return ((string)(this["UpdateManifestUrl"]));
