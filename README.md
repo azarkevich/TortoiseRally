@@ -1,18 +1,23 @@
 # TortoiseRally
 
-What is TortoiseRally
+About TortoiseRally
 ==
 
 TortoiseRally is a (relatively) simple TortoiseSVN plugin, for integrate with [Rally Software ALM](https://www.rallydev.com/).
 
 A couple screenshots:
 
-![Screen](http://azarkevich.github.io/TortoiseRally/UserGuide/Step6.png)
-![Screen](http://azarkevich.github.io/TortoiseRally/UserGuide/Step7.png)
-![Screen](http://azarkevich.github.io/TortoiseRally/UserGuide/Step8.png)
+<img src='http://azarkevich.github.io/TortoiseRally/UserGuide/Screen1.png' width='200px'></img>
+<img src='http://azarkevich.github.io/TortoiseRally/UserGuide/Screen2.png' width='200px'></img>
+<img src='http://azarkevich.github.io/TortoiseRally/UserGuide/Screen3.png' width='200px'></img>
+<img src='http://azarkevich.github.io/TortoiseRally/UserGuide/Screen4.png' width='200px'></img>
 
-
-[How-To Install](http://azarkevich.github.io/TortoiseRally/UserGuide/Installation/HowToInstall.md)
+Disclaimer
 ===
 
-[How-To Install](http://azarkevich.github.io/TortoiseRally/UserGuide/Installation/HowToInstall.md)
+This software was used internally for long time, so some feature can look strange or overcomplicated.
+
+How-To Install
+===
+
+[Installation Guide](http://azarkevich.github.io/TortoiseRally/UserGuide/Installation/HowToInstall.md)
