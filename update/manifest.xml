@@ -1,7 +1,7 @@
 <manifest>
 	<version>5.0</version>
 	<changelog>changelog.txt</changelog>
-	<xsetup>Setup-5.0.msi</xsetup>
+	<setup>https://github.com/azarkevich/TortoiseRally/releases/tag/v5.0</setup>
 	<download>https://github.com/azarkevich/TortoiseRally/releases/download/v5.0/Setup.msi</download>
 </manifest>
 
