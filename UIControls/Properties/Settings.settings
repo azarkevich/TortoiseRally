@@ -1,0 +1,57 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RallyToolsCore.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SourceSafe" Provider="TrackGearLibrary.Core.MySettingProvider" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LastSvnLogUrl" Provider="TrackGearLibrary.Core.MySettingProvider" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="NextBuildUrlTemplate" Provider="TrackGearLibrary.Core.MySettingProvider" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="RallyUser" Provider="TrackGearLibrary.Core.MySettingProvider" GenerateDefaultValueInCode="false" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="RallyPassword" Provider="TrackGearLibrary.Core.MySettingProvider" GenerateDefaultValueInCode="false" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="RallyQuery" Provider="TrackGearLibrary.Core.MySettingProvider" GenerateDefaultValueInCode="false" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="MutedVersion" Provider="TrackGearLibrary.Core.MySettingProvider" GenerateDefaultValueInCode="false" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DailyReportTemplatePath" Provider="TrackGearLibrary.Core.MySettingProvider" GenerateDefaultValueInCode="false" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ReviewRequestTemplate" Provider="TrackGearLibrary.Core.MySettingProvider" GenerateDefaultValueInCode="false" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="IterationFilter" Provider="TrackGearLibrary.Core.MySettingProvider" GenerateDefaultValueInCode="false" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="HideDefectSubtasks" Provider="TrackGearLibrary.Core.MySettingProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UpgradeMarker" Provider="TrackGearLibrary.Core.MySettingProvider" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="HideNoiseTasks" Provider="TrackGearLibrary.Core.MySettingProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="NoiseTaskRegex" Provider="TrackGearLibrary.Core.MySettingProvider" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="UpdateManifestUrl" Provider="TrackGearLibrary.Core.MySettingProvider" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="BuildsBoardUri" Provider="TrackGearLibrary.Core.MySettingProvider" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="EnablePostCommitTools" Provider="TrackGearLibrary.Core.MySettingProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackGearDesktop", "TrackGearDesktop\TrackGearDesktop.csproj", "{1268BF93-4936-439D-92D2-4D2C7AD425C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TortoiseSvnBugtraqProvider", "TortoiseSvnBugtraqProvider\TortoiseSvnBugtraqProvider.csproj", "{018B6B5E-0592-4B11-A06D-DA571111E628}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C739505A-3B22-4156-AAEB-0F0D4F7FEC0C}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "SetupProject", "SetupProject\SetupProject.wixproj", "{1466E587-F480-4144-B3A7-AB0CFE00808D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rally.RestApi", "RallyRestToolkitFor.NET\Rally.RestApi\Rally.RestApi.csproj", "{D8B8D5EC-7482-4742-9516-876CEE07C8AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "external", "external", "{C1F0F36A-CC41-4AE3-AB87-53431E6AF120}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RallyToolsCore", "UIControls\RallyToolsCore.csproj", "{A1D837EF-F533-4392-ABD9-829219662E5B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{C8C13229-F9A3-4947-859F-DCBDF586D997}"
+	ProjectSection(SolutionItems) = preProject
+		.build\Version.targets = .build\Version.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1268BF93-4936-439D-92D2-4D2C7AD425C3}.Debug|x64.ActiveCfg = Debug|x64
+		{1268BF93-4936-439D-92D2-4D2C7AD425C3}.Debug|x64.Build.0 = Debug|x64
+		{1268BF93-4936-439D-92D2-4D2C7AD425C3}.Release|x64.ActiveCfg = Release|x64
+		{1268BF93-4936-439D-92D2-4D2C7AD425C3}.Release|x64.Build.0 = Release|x64
+		{018B6B5E-0592-4B11-A06D-DA571111E628}.Debug|x64.ActiveCfg = Debug|x64
+		{018B6B5E-0592-4B11-A06D-DA571111E628}.Debug|x64.Build.0 = Debug|x64
+		{018B6B5E-0592-4B11-A06D-DA571111E628}.Release|x64.ActiveCfg = Release|x64
+		{018B6B5E-0592-4B11-A06D-DA571111E628}.Release|x64.Build.0 = Release|x64
+		{1466E587-F480-4144-B3A7-AB0CFE00808D}.Debug|x64.ActiveCfg = Debug|x64
+		{1466E587-F480-4144-B3A7-AB0CFE00808D}.Debug|x64.Build.0 = Debug|x64
+		{1466E587-F480-4144-B3A7-AB0CFE00808D}.Release|x64.ActiveCfg = Release|x64
+		{1466E587-F480-4144-B3A7-AB0CFE00808D}.Release|x64.Build.0 = Release|x64
+		{D8B8D5EC-7482-4742-9516-876CEE07C8AF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D8B8D5EC-7482-4742-9516-876CEE07C8AF}.Debug|x64.Build.0 = Debug|Any CPU
+		{D8B8D5EC-7482-4742-9516-876CEE07C8AF}.Release|x64.ActiveCfg = Release|Any CPU
+		{D8B8D5EC-7482-4742-9516-876CEE07C8AF}.Release|x64.Build.0 = Release|Any CPU
+		{A1D837EF-F533-4392-ABD9-829219662E5B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A1D837EF-F533-4392-ABD9-829219662E5B}.Debug|x64.Build.0 = Debug|Any CPU
+		{A1D837EF-F533-4392-ABD9-829219662E5B}.Release|x64.ActiveCfg = Release|Any CPU
+		{A1D837EF-F533-4392-ABD9-829219662E5B}.Release|x64.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D8B8D5EC-7482-4742-9516-876CEE07C8AF} = {C1F0F36A-CC41-4AE3-AB87-53431E6AF120}
+	EndGlobalSection
+EndGlobal

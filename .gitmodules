@@ -1,0 +1,3 @@
+[submodule "RallyRestToolkitFor.NET"]
+	path = RallyRestToolkitFor.NET
+	url = https://github.com/azarkevich/RallyRestToolkitFor.NET.git

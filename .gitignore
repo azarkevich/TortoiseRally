@@ -1,0 +1,15 @@
+*.wixobj
+*.suo
+*.user
+bin/
+obj/
+_ReSharper.*/
+packages/
+*.DotSettings
+TrackGearDesktop/Properties/AssemblyInfo.cs
+TortoiseSvnBugtraqProvider/Properties/AssemblyInfo.cs
+UIControls/Properties/AssemblyInfo.cs
+VssPowerTools/Properties/AssemblyInfo.cs
+SetupProject/.build
+TortoiseSvnBugtraqProvider/
+TrackGearLibrary/*

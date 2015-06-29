@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Version;Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A1D837EF-F533-4392-ABD9-829219662E5B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RallyToolsCore</RootNamespace>
+    <AssemblyName>RallyToolsCore</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>sign-key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SharpSvn, Version=1.7017.3288.76, Culture=neutral, PublicKeyToken=d729672594885a28, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SharpSvn.1.7-x64.1.7017.3288.76\lib\net40\SharpSvn.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Outlook, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio 10.0\Visual Studio Tools for Office\PIA\Office14\Microsoft.Office.Interop.Outlook.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Reactive, Version=1.0.10621.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Rx-Main.1.0.11226\lib\Net4\System.Reactive.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BackgroundOperation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BackgroundOperation.Designer.cs">
+      <DependentUpon>BackgroundOperation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CancellableWait.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CancellableWait.Designer.cs">
+      <DependentUpon>CancellableWait.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommitedIssueTools.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommitedIssueTools.Designer.cs">
+      <DependentUpon>CommitedIssueTools.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Bootstrapper.cs" />
+    <Compile Include="Core\Constants.cs" />
+    <Compile Include="Core\ExecException.cs" />
+    <Compile Include="Core\ExecHelper.cs" />
+    <Compile Include="Core\Logger.cs" />
+    <Compile Include="Core\MergeMessage\MergeMessageComposer.cs" />
+    <Compile Include="Core\MergeMessage\RevLogEntry.cs" />
+    <Compile Include="Core\MergeMessage\RevRange.cs" />
+    <Compile Include="Core\MergeMessage\RevRangeSet.cs" />
+    <Compile Include="Core\MessageBoxEx.cs" />
+    <Compile Include="Core\MySettingsProvider.cs" />
+    <Compile Include="Core\NewVersionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\NewVersionControl.Designer.cs">
+      <DependentUpon>NewVersionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\SoftwareVersion\SoftwareVersion.cs" />
+    <Compile Include="Core\SoftwareVersion\SoftwareVersionComponent.cs" />
+    <Compile Include="Core\TasksExtensions.cs" />
+    <Compile Include="Core\UsageMetrics.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="NewVersion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewVersion.Designer.cs">
+      <DependentUpon>NewVersion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Rally\Artifact.cs" />
+    <Compile Include="Rally\ArtifactType.cs" />
+    <Compile Include="Rally\Columns\ColumnBase.cs" />
+    <Compile Include="Rally\Columns\ColumnsCollection.cs" />
+    <Compile Include="Rally\Columns\FormattedIDColumn.cs" />
+    <Compile Include="Rally\Columns\IterationColumn.cs" />
+    <Compile Include="Rally\Columns\ParentColumn.cs" />
+    <Compile Include="Rally\Columns\WorkItemNameColumn.cs" />
+    <Compile Include="Rally\MyWork.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rally\MyWork.Designer.cs">
+      <DependentUpon>MyWork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rally\IterationArtifact.cs" />
+    <Compile Include="Rally\RallySettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rally\RallySettings.Designer.cs">
+      <DependentUpon>RallySettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rally\RallyTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rally\RallyTool.Designer.cs">
+      <DependentUpon>RallyTool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rally\SignDefects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rally\SignDefects.Designer.cs">
+      <DependentUpon>SignDefects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rally\VirtualListItemArtifact.cs" />
+    <Compile Include="Review\Reviewer.cs" />
+    <Compile Include="Review\ReviewersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Review\ReviewersList.Designer.cs">
+      <DependentUpon>ReviewersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimplifiedBackgroundOperation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SimplifiedBackgroundOperation.Designer.cs">
+      <DependentUpon>SimplifiedBackgroundOperation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Subversion\SvnWrapper.cs" />
+    <Compile Include="Svn\SvnLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Svn\SvnLog.Designer.cs">
+      <DependentUpon>SvnLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TicketItem.cs" />
+    <Compile Include="Tools\SvnUtils.cs" />
+    <Compile Include="Waiter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BackgroundOperation.resx">
+      <DependentUpon>BackgroundOperation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CancellableWait.resx">
+      <DependentUpon>CancellableWait.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommitedIssueTools.resx">
+      <DependentUpon>CommitedIssueTools.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\NewVersionControl.resx">
+      <DependentUpon>NewVersionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewVersion.resx">
+      <DependentUpon>NewVersion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rally\MyWork.resx">
+      <DependentUpon>MyWork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rally\RallySettings.resx">
+      <DependentUpon>RallySettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rally\RallyTool.resx">
+      <DependentUpon>RallyTool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rally\SignDefects.resx">
+      <DependentUpon>SignDefects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Review\ReviewersList.resx">
+      <DependentUpon>ReviewersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimplifiedBackgroundOperation.resx">
+      <DependentUpon>SimplifiedBackgroundOperation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Svn\SvnLog.resx">
+      <DependentUpon>SvnLog.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fdp-template.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\rally.ico" />
+    <None Include="Resources\subversion.png" />
+    <Content Include="review-email-template.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_changelog.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\subversion.ico" />
+    <None Include="Resources\SourceSafe.png" />
+    <None Include="app.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Resources\Error.png" />
+    <None Include="sign-key.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\spin.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="conf\reviewers.txt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RallyRestToolkitFor.NET\Rally.RestApi\Rally.RestApi.csproj">
+      <Project>{D8B8D5EC-7482-4742-9516-876CEE07C8AF}</Project>
+      <Name>Rally.RestApi</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <MSBuildCommunityTasksPath>$(MSBuildProjectDirectory)\..\.build</MSBuildCommunityTasksPath>
+    <MSBuildCommunityTasksLib>$(MSBuildProjectDirectory)\..\.build\MSBuild.Community.Tasks.dll</MSBuildCommunityTasksLib>
+  </PropertyGroup>
+  <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.targets" />
+  <Import Project="$(MSBuildCommunityTasksPath)\Version.targets" />
+  <Target Name="Version">
+    <GitVersion LocalPath="$(MSBuildProjectDirectory)">
+      <Output TaskParameter="CommitHash" PropertyName="Revision" />
+    </GitVersion>
+    <AssemblyInfo CodeLanguage="CS" OutputFile="Properties\AssemblyInfo.cs" AssemblyTitle="Rally Tools" AssemblyDescription="Core Library" AssemblyCompany="" AssemblyProduct="Rally Tools" AssemblyCopyright="Copyright © Sergey Azarkevich 2014" ComVisible="false" CLSCompliant="true" AssemblyInformationalVersion="$(Major).$(Minor).$(Revision) built $([System.DateTime]::Now.ToString(`yyyy/MM/dd HH:mm:ss`))" AssemblyVersion="$(Major).$(Minor).$(Build)" AssemblyFileVersion="$(Major).$(Minor).0.0" />
+  </Target>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+</Project>

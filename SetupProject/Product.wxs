@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+	<?define corebin="$(var.RallyToolsCore.ProjectDir)bin\$(var.Configuration)\" ?>
+	<?define tglbin="$(var.TortoiseSvnBugtraqProvider.ProjectDir)bin\$(var.Platform)\$(var.Configuration)\" ?>
+	<?define tgdbin="$(var.TrackGearDesktop.ProjectDir)bin\$(var.Platform)\$(var.Configuration)\" ?>
+
+	<Product Id="*" Name="TortoiseRally" Language="1033" Version="$(var.SetupVersion)" Manufacturer="Sergey Azarkevich" UpgradeCode="61d26505-5226-4acb-b67d-c824fabc712b">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<Condition Message= "You need to be an administrator to install this product.">
+			Privileged
+		</Condition>
+
+		<Condition Message= 'This setup requires the .NET Framework 4.0 or higher.'>
+			<![CDATA[MsiNetAssemblySupport >= "4.0"]]>
+		</Condition>
+
+		<Property Id="REINSTALLMODE" Value="amus" />
+		<MediaTemplate EmbedCab="yes" />
+
+		<MajorUpgrade DowngradeErrorMessage="The version currently installed is newer than the version you are attempting to install."/>
+
+		<Feature Id="tgd" Title="TrackGear Desktop" Level="1">
+			<ComponentGroupRef Id="tgd" />
+		</Feature>
+		<Feature Id="tgl" Title="Svn BugTraq provider" Level="1">
+			<ComponentGroupRef Id="tgl" />
+			<ComponentGroupRef Id="sharpsvn" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="RallyTools">
+					<Directory Id="conf" Name="conf" />
+					<Directory Id="VssPowerTools" Name="VssPowerTools" />
+				</Directory>
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="tgd" Directory="INSTALLFOLDER">
+			<ComponentRef Id="tgd" />
+			<ComponentRef Id="Registry_AppPath" />
+			<ComponentRef Id="Registry_tgdcmd" />
+		</ComponentGroup>
+		<ComponentGroup Id="tgl" Directory="INSTALLFOLDER">
+			<ComponentRef Id="templates" />
+			<ComponentRef Id="reviewers" />
+			<ComponentRef Id="changes" />
+			<ComponentRef Id="GFINFileViewer" />
+			<ComponentRef Id="System.Reactive" />
+			<ComponentRef Id="TortoiseSvnBugtraqProvider" />
+			<ComponentRef Id="RallyToolsCore" />
+			<ComponentRef Id="Rally.RestApi" />
+			<ComponentRef Id="HtmlAgilityPack" />
+			<ComponentRef Id="Newtonsoft.Json" />
+			<ComponentRef Id="tgl_interop_registration" />
+		</ComponentGroup>
+		<ComponentGroup Id="sharpsvn" Directory="INSTALLFOLDER">
+			<ComponentRef Id="SharpSvn1.7_x64" />
+			<ComponentRef Id="SharpSvn1.8_x64" />
+		</ComponentGroup>
+	</Fragment>
+
+	<Fragment>
+
+		<Component Id="SharpSvn1.7_x64" Directory="INSTALLFOLDER" Win64="no">
+			<File Id="SharpSvn1.7_x64" Name="SharpSvn.1.7-x64.dll" Source="$(var.SolutionDir)packages\SharpSvn.1.7-x64.1.7017.3288.76\lib\net40\SharpSvn.dll" />
+		</Component>
+
+		<Component Id="SharpSvn1.8_x64" Directory="INSTALLFOLDER" Win64="no">
+			<File Id="SharpSvn1.8_x64" Name="SharpSvn.1.8-x64.dll" Source="$(var.SolutionDir)packages\SharpSvn.1.8-x64.1.8010.3345.53\lib\net40\SharpSvn.dll" />
+		</Component>
+
+		<Component Id="tgd" Directory="INSTALLFOLDER" Win64="no">
+			<File Id="tgd.exe" Name="tgd.exe" Source="$(var.tgdbin)tgd.exe" />
+			<File Id="tgd.exe.config" Name="tgd.exe.config" Source="$(var.tgdbin)tgd.exe.config" />
+		</Component>
+
+		<Component Id="TortoiseSvnBugtraqProvider" Directory="INSTALLFOLDER" Win64="no">
+			<File Id="TortoiseSvnBugtraqProvider.dll" Name="TortoiseSvnBugtraqProvider.dll" Source="$(var.tglbin)TortoiseSvnBugtraqProvider.dll" />
+		</Component>
+
+		<Component Id="RallyToolsCore" Directory="INSTALLFOLDER" Win64="no">
+			<File Id="RallyToolsCore.dll" Name="RallyToolsCore.dll" Source="$(var.tglbin)RallyToolsCore.dll" />
+		</Component>
+
+		<Component Id="templates" Directory="INSTALLFOLDER" Guid="7876E6A3-5515-486E-92C4-B34492E0A70D" Win64="no">
+			<File Id="fdp_template.txt" Name="fdp-template.txt" Source="$(var.tglbin)fdp-template.txt" />
+			<File Id="review_email_template.html" Name="review-email-template.html" Source="$(var.tglbin)review-email-template.html" />
+		</Component>
+
+		<Component Id="reviewers" Guid="B529CAD9-784B-47C2-A8AA-76EDFDEA6B7F" Directory="conf" Win64="no">
+			<File Id="REVIEWERS.TXT" Name="reviewers.txt" Source="$(var.tglbin)conf\reviewers.txt" />
+		</Component>
+
+		<Component Id="changes" Guid="C055E249-68E2-423B-8C7E-90771DC29339" Directory="INSTALLFOLDER" Win64="no">
+			<File Id="changes" Name="_changelog.txt" Source="$(var.tglbin)_changelog.txt" />
+		</Component>
+
+		<Component Id="GFINFileViewer" Guid="892AFB0F-1C04-4A52-B2AE-F3589F404658" Directory="INSTALLFOLDER" Win64="no">
+			<File Id="GFINFileViewer.exe" Name="GFINFileViewer.exe" Source="Q:\tools\GFINFileViewer.exe" />
+		</Component>
+
+		<Component Id="System.Reactive" Guid="3ABDF619-01ED-4385-B283-934D6A063E99" Directory="INSTALLFOLDER" Win64="no">
+			<File Name="System.Reactive.dll" Source="$(var.corebin)System.Reactive.dll" />
+		</Component>
+
+		<Component Id="Rally.RestApi" Guid="1065BB24-231F-45D6-A3D3-4AAA8CE1CBFD" Directory="INSTALLFOLDER" Win64="no">
+			<File Name="Rally.RestApi.dll" Source="$(var.corebin)Rally.RestApi.dll" />
+		</Component>
+
+		<Component Id="HtmlAgilityPack" Guid="CF5F2632-BE3F-4B2A-9190-E4FCA8C819B2" Directory="INSTALLFOLDER" Win64="no">
+			<File Name="HtmlAgilityPack.dll" Source="$(var.corebin)HtmlAgilityPack.dll" />
+		</Component>
+
+		<Component Id="Newtonsoft.Json" Guid="5DC3ADEF-8848-463A-BC55-83692C36CB4A" Directory="INSTALLFOLDER" Win64="no">
+			<File Name="Newtonsoft.Json.dll" Source="$(var.corebin)Newtonsoft.Json.dll" />
+		</Component>
+
+
+		<Component Id="Registry_AppPath" Guid="73FFD729-49C7-476A-8F13-0AD33B916498" Directory="TARGETDIR">
+			<RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\tgd.exe">
+				<RegistryValue Type="string" Value="[INSTALLFOLDER]tgd.exe"/>
+				<RegistryValue Type="string" Name="Path" Value="[INSTALLFOLDER]"/>
+			</RegistryKey>
+		</Component>
+
+		<Component Id="Registry_tgdcmd" Guid="094ABE0D-5F63-4AB5-8376-528435A9D024" Directory="TARGETDIR">
+			<RegistryKey Root="HKCR" Key="tgdcmd">
+				<RegistryValue Type="string" Value="URL:TGD Cmd Protocol"/>
+				<RegistryValue Type="string" Name="URL Protocol" Value=""/>
+				<RegistryKey Key="DefautlIcon">
+					<RegistryValue Type="string" Value="[INSTALLFOLDER]tgd.exe"/>
+				</RegistryKey>
+				<RegistryKey Key="shell\open\command">
+					<RegistryValue Type="string" Value='[INSTALLFOLDER]tgd.exe /command:url /urlcmd:"%1"'/>
+				</RegistryKey>
+			</RegistryKey>
+		</Component>
+	</Fragment>
+
+	<?if $(var.Platform) = x64 ?>
+		<?define tgl_interop_win64 = yes ?>
+	<?else ?>
+		<?define tgl_interop_win64 = no ?>
+	<?endif ?>
+
+	<?define tgl_interop_registration_guild = "708D2AE8-B954-48F8-9C22-D33047A7D399" ?>
+	<?define tgl_interop_reg_name = "tgl_interop_registration" ?>
+	<?include tsvn-reg-interop.wxi ?>
+
+	<?if $(var.Platform) = x64 ?>
+
+		<?define tgl_interop_win64 = no ?>
+		<?define tgl_interop_reg_name = "tgl_interop_registration_x86" ?>
+		<?define tgl_interop_registration_guild = "694463A9-259E-450A-8E67-EE8384418CCD" ?>
+		<?include tsvn-reg-interop.wxi ?>
+
+	<?endif ?>
+
+</Wix>

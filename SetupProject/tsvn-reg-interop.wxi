@@ -1,0 +1,21 @@
+﻿<Include>
+
+	<Fragment>
+		<Component Id="$(var.tgl_interop_reg_name)" Guid="$(var.tgl_interop_registration_guild)" Directory="TARGETDIR" Win64="$(var.tgl_interop_win64)">
+			<Class Id="{298B9270-7200-423C-B704-6E241F00CD93}" Context="InprocServer32" Description="TortoiseSvnBugtraqProvider.BugTraqProvider.BugTraqProvider" ThreadingModel="both" ForeignServer="mscoree.dll">
+				<ProgId Id="TortoiseSvnBugtraqProvider.BugTraqProvider.BugTraqProvider" Description="TortoiseSvnBugtraqProvider.BugTraqProvider.BugTraqProvider" />
+			</Class>
+
+			<RegistryValue Root="HKCR" Key="CLSID\{298B9270-7200-423C-B704-6E241F00CD93}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+			<RegistryValue Root="HKCR" Key="CLSID\{298B9270-7200-423C-B704-6E241F00CD93}\InprocServer32\$(var.ClrVersion)" Name="Class" Value="TortoiseSvnBugtraqProvider.BugTraqProvider.BugTraqProvider" Type="string" Action="write" />
+			<RegistryValue Root="HKCR" Key="CLSID\{298B9270-7200-423C-B704-6E241F00CD93}\InprocServer32\$(var.ClrVersion)" Name="Assembly" Value="TortoiseSvnBugtraqProvider, Version=$(var.ClrVersion), Culture=neutral, PublicKeyToken=529e524e96f56c4a" Type="string" Action="write" />
+			<RegistryValue Root="HKCR" Key="CLSID\{298B9270-7200-423C-B704-6E241F00CD93}\InprocServer32\$(var.ClrVersion)" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+			<RegistryValue Root="HKCR" Key="CLSID\{298B9270-7200-423C-B704-6E241F00CD93}\InprocServer32\$(var.ClrVersion)" Name="CodeBase" Value="file:///[#TortoiseSvnBugtraqProvider.dll]" Type="string" Action="write" />
+			<RegistryValue Root="HKCR" Key="CLSID\{298B9270-7200-423C-B704-6E241F00CD93}\InprocServer32" Name="Class" Value="TortoiseSvnBugtraqProvider.BugTraqProvider.BugTraqProvider" Type="string" Action="write" />
+			<RegistryValue Root="HKCR" Key="CLSID\{298B9270-7200-423C-B704-6E241F00CD93}\InprocServer32" Name="Assembly" Value="TortoiseSvnBugtraqProvider, Version=$(var.ClrVersion), Culture=neutral, PublicKeyToken=529e524e96f56c4a" Type="string" Action="write" />
+			<RegistryValue Root="HKCR" Key="CLSID\{298B9270-7200-423C-B704-6E241F00CD93}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+			<RegistryValue Root="HKCR" Key="CLSID\{298B9270-7200-423C-B704-6E241F00CD93}\InprocServer32" Name="CodeBase" Value="file:///[#TortoiseSvnBugtraqProvider.dll]" Type="string" Action="write" />
+
+		</Component>
+	</Fragment>
+</Include>
