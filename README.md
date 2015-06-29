@@ -9,6 +9,8 @@ A couple screenshots:
 <img src='http://azarkevich.github.io/TortoiseRally/UserGuide/Screen3.png' width='200px'></img>
 <img src='http://azarkevich.github.io/TortoiseRally/UserGuide/Screen4.png' width='200px'></img>
 
+Require .NET 4.0
+
 Disclaimer
 ===
 
