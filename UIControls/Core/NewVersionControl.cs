@@ -32,21 +32,7 @@ namespace TrackGearLibrary.Core
 
 		static void ComposeFeedback(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			string ver;
-			try
-			{
-				ver = ((AssemblyInformationalVersionAttribute)Assembly
-					.GetExecutingAssembly()
-					.GetCustomAttributes(typeof(AssemblyInformationalVersionAttribute), false)[0])
-					.InformationalVersion
-				;
-			}
-			catch
-			{
-				ver = ProductVersion;
-			}
-
-			Process.Start("https://github.com/azarkevich/TortoiseRally");
+			Process.Start("https://github.com/azarkevich/TortoiseRally/issues");
 		}
 
 		class UpdateInformation

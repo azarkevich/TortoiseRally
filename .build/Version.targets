@@ -2,8 +2,8 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
 	<PropertyGroup>
-		<Major>4</Major>
-		<Minor>6</Minor>
+		<Major>5</Major>
+		<Minor>0</Minor>
 		<Build>*</Build>
 		<Revision>*</Revision>
 	</PropertyGroup>
