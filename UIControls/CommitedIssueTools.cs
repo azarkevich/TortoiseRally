@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Windows.Forms;
 using System.Reactive.Linq;
@@ -28,17 +29,6 @@ namespace TrackGearLibrary
 {
 	public partial class CommitedIssueTools : Form
 	{
-		class Reviewer
-		{
-			public string Name;
-			public string EMail;
-
-			public override string ToString()
-			{
-				return Name;
-			}
-		}
-
 		readonly ICollection<string> _changedItems;
 		readonly long _revision;
 		readonly TicketItem[] _issues;
@@ -255,10 +245,12 @@ namespace TrackGearLibrary
 
 				// reviewer
 				var reviewer = "TBD";
-				var r = comboBoxReviewer.SelectedItem as Reviewer;
+				var r = comboBoxReviewer.SelectedItem as MailAddress;
 				if (r != null)
 				{
-					reviewer = r.Name;
+					reviewer = r.DisplayName;
+					if(string.IsNullOrWhiteSpace(reviewer))
+						reviewer = r.User;
 				}
 				else if (!string.IsNullOrWhiteSpace(comboBoxReviewer.Text))
 				{
@@ -451,9 +443,9 @@ namespace TrackGearLibrary
 				msg.HTMLBody = BuildMailBody(body);
 			}
 
-			var r = comboBoxReviewer.SelectedItem as Reviewer;
+			var r = comboBoxReviewer.SelectedItem as MailAddress;
 			if(r != null)
-				msg.To = r.EMail;
+				msg.To = r.Address;
 
 			msg.Display();
 		}
@@ -508,32 +500,90 @@ $$BODY$$
 			var rwFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? "", "conf\\reviewers.txt");
 			if(File.Exists(rwFile))
 			{
-				var rwl = File.ReadAllLines(rwFile)
+				var reviewers = File.ReadAllLines(rwFile)
 					.Where(l => !string.IsNullOrWhiteSpace(l))
-					.Select(l => l.Split('\t'))
-					.Where(arr => arr.Length == 2)
-					.ToList()
+					.Select(l => new MailAddress(l))
+					.ToArray()
 				;
 
-				foreach (var r in rwl)
-				{
-					comboBoxReviewer.Items.Add(new Reviewer { Name = r[0], EMail = r[1] });
-				}
+				comboBoxReviewer.Items.AddRange(reviewers);
 			}
 
 			if(comboBoxReviewer.Items.Count == 0)
 			{
-				comboBoxReviewer.Items.Add(new Reviewer { Name = "Fill 'conf\\reviewers.txt'", EMail = "fake.email@company.org" });
+				comboBoxReviewer.Items.Add("Fill 'conf\\reviewers.txt'");
 			}
 
-			Task.Factory.StartNew(() => {
+			var ts = new TaskCompletionSource<string>();
+			_regressionBuild = ts.Task;
 
-				var waiters = new [] { "", ".", "..", "...", "...", "...." };
+			var nextBuildUrl = Settings.Default.NextBuildUrlTemplate.Replace("{branch}", "trunk");
+
+			if(!string.IsNullOrWhiteSpace(nextBuildUrl))
+			{
+
+				var wc = new WebClient { UseDefaultCredentials = true };
+
+				wc.DownloadStringAsync(new Uri(nextBuildUrl));
+				wc.DownloadStringCompleted += (o, args) =>
+				{
+
+					var err = args.Error;
+					var res = args.Error == null ? args.Result : null;
+
+					Action a = () =>
+					{
+
+						if (err != null)
+						{
+							linkLabelRegressBuild.Text = "Next build(s): Error: " + err.Message;
+							ts.TrySetException(err);
+							return;
+						}
+
+						int build;
+
+						if (Int32.TryParse(res, out build) && build > 0)
+						{
+							build++;
+
+							var sbuild = build.ToString(CultureInfo.InvariantCulture);
+
+							linkLabelRegressBuild.Tag = build;
+							linkLabelRegressBuild.Text = "Next build(s): " + sbuild;
+							linkLabelRegressBuild.LinkArea = new LinkArea("Next build(s): ".Length, linkLabelRegressBuild.Text.Length - "Next build(s): ".Length);
+							linkLabelRegressBuild.Click += (_, __) => Clipboard.SetText(sbuild);
+
+							ts.TrySetResult(sbuild);
+						}
+						else
+						{
+							ts.TrySetResult("No information");
+							linkLabelRegressBuild.Text = "Next build(s): Result: " + res;
+						}
+					};
+
+					if (InvokeRequired)
+						Invoke(a);
+					else
+						a();
+				};
+			}
+			else
+			{
+				ts.SetCanceled();
+			}
+
+			Task.Factory.StartNew(() =>
+			{
+
+				var waiters = new[] { "", ".", "..", "...", "...", "...." };
 				var waiterIdx = 0;
 
-				while(true)
+				while (true)
 				{
-					linkLabelRegressBuild.Invoke((Action)delegate {
+					linkLabelRegressBuild.Invoke((Action)delegate
+					{
 						if (linkLabelRegressBuild.Handle != IntPtr.Zero && !_regressionBuild.IsCompleted)
 							linkLabelRegressBuild.Text = "Guess build to regress: " + waiters[waiterIdx++ % waiters.Length];
 					});
@@ -544,55 +594,6 @@ $$BODY$$
 					Thread.Sleep(200);
 				}
 			});
-
-			var ts = new TaskCompletionSource<string>();
-
-			var wc = new WebClient { UseDefaultCredentials = true };
-
-			wc.DownloadStringAsync(new Uri(Settings.Default.NextBuildUrlTemplate.Replace("{branch}", "trunk")));
-			wc.DownloadStringCompleted += (o, args) => {
-
-				var err = args.Error;
-				var res = args.Error == null ? args.Result : null;
-
-				Action a = () => {
-
-					if (err != null)
-					{
-						linkLabelRegressBuild.Text = "Next build(s): Error: " + err.Message;
-						ts.TrySetException(err);
-						return;
-					}
-
-					int build;
-
-					if (Int32.TryParse(res, out build) && build > 0)
-					{
-						build++;
-
-						var sbuild = build.ToString(CultureInfo.InvariantCulture);
-
-						linkLabelRegressBuild.Tag = build;
-						linkLabelRegressBuild.Text = "Next build(s): " + sbuild;
-						linkLabelRegressBuild.LinkArea = new LinkArea("Next build(s): ".Length, linkLabelRegressBuild.Text.Length - "Next build(s): ".Length);
-						linkLabelRegressBuild.Click += (_, __) => Clipboard.SetText(sbuild);
-
-						ts.TrySetResult(sbuild);
-					}
-					else
-					{
-						ts.TrySetResult("No information");
-						linkLabelRegressBuild.Text = "Next build(s): Result: " + res;
-					}
-				};
-
-				if (InvokeRequired)
-					Invoke(a);
-				else
-					a();
-			};
-
-			_regressionBuild = ts.Task;
 		}
 
 		void comboBoxReviewer_SelectedIndexChanged(object sender, EventArgs e)
@@ -600,21 +601,20 @@ $$BODY$$
 			UsageMetrics.IncrementUsage(UsageMetrics.UsageKind.CommitToolReviewerChanged);
 
 			// reshuffle
-			var r = comboBoxReviewer.SelectedItem as Reviewer;
+			var r = comboBoxReviewer.SelectedItem as MailAddress;
 			if(r == null)
 				return;
 
 			var sb = new StringBuilder();
-			sb.AppendFormat("{0}	{1}\n", r.Name, r.EMail);
+			sb.AppendLine(r.ToString());
 
 			foreach (var item in comboBoxReviewer.Items)
 			{
-				if(item == r)
+				var address = item as MailAddress;
+				if(address == null || ReferenceEquals(item, r))
 					continue;
 
-				var ritem = (Reviewer)item;
-
-				sb.AppendFormat("{0}	{1}\n", ritem.Name, ritem.EMail);
+				sb.AppendLine(address.ToString());
 			}
 
 			var rwFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? "", "conf\\reviewers.txt");
