@@ -39,8 +39,10 @@
 			this.comboBoxReviewer = new System.Windows.Forms.ComboBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-			this.bgOperationProgress = new UIControls.SimplifiedBackgroundOperation();
 			this.buttonPostFDP = new System.Windows.Forms.Button();
+			this.bgOperationProgress = new UIControls.SimplifiedBackgroundOperation();
+			this.fileSystemWatcherReviewers = new System.IO.FileSystemWatcher();
+			((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcherReviewers)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// buttonGenFDP
@@ -133,17 +135,9 @@
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Reviewer";
 			// 
-			// bgOperationProgress
-			// 
-			this.bgOperationProgress.AutoSize = true;
-			this.bgOperationProgress.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.bgOperationProgress.Location = new System.Drawing.Point(12, 126);
-			this.bgOperationProgress.Name = "bgOperationProgress";
-			this.bgOperationProgress.Size = new System.Drawing.Size(63, 21);
-			this.bgOperationProgress.TabIndex = 10;
-			// 
 			// buttonPostFDP
 			// 
+			this.buttonPostFDP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonPostFDP.Enabled = false;
 			this.buttonPostFDP.Location = new System.Drawing.Point(207, 68);
 			this.buttonPostFDP.Name = "buttonPostFDP";
@@ -154,6 +148,21 @@
         "is fixed.");
 			this.buttonPostFDP.UseVisualStyleBackColor = true;
 			this.buttonPostFDP.Click += new System.EventHandler(this.buttonPostFDP_Click);
+			// 
+			// bgOperationProgress
+			// 
+			this.bgOperationProgress.AutoSize = true;
+			this.bgOperationProgress.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.bgOperationProgress.Location = new System.Drawing.Point(12, 126);
+			this.bgOperationProgress.Name = "bgOperationProgress";
+			this.bgOperationProgress.Size = new System.Drawing.Size(63, 21);
+			this.bgOperationProgress.TabIndex = 10;
+			// 
+			// fileSystemWatcherReviewers
+			// 
+			this.fileSystemWatcherReviewers.EnableRaisingEvents = true;
+			this.fileSystemWatcherReviewers.SynchronizingObject = this;
+			this.fileSystemWatcherReviewers.Changed += new System.IO.FileSystemEventHandler(this.fileSystemWatcherReviewers_Changed);
 			// 
 			// CommitedIssueTools
 			// 
@@ -177,6 +186,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Commited Issue Tools";
 			this.Load += new System.EventHandler(this.CommitedIssueTools_Load);
+			((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcherReviewers)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -195,5 +205,6 @@
 		private System.Windows.Forms.ToolTip toolTip;
 		private UIControls.SimplifiedBackgroundOperation bgOperationProgress;
 		private System.Windows.Forms.Button buttonPostFDP;
+		private System.IO.FileSystemWatcher fileSystemWatcherReviewers;
 	}
 }

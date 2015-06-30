@@ -1,1 +1,1 @@
-﻿
+﻿# add email addresses(one email per line), compatible with MailAddress .Net class (example: Smith, John <John.Smit@domain.com>)

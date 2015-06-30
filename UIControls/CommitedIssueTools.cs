@@ -43,6 +43,9 @@ namespace TrackGearLibrary
 		string _fdpFilePath;
 		readonly Task<object> _resolveRallyUrlsTask;
 
+		readonly string _rewieversFile;
+		const string EditReviewers = @"<< Edit >>";
+
 		public static void ShowCommitedIssueTools(IntPtr hParentWnd, string commonRoot, string[] pathList, string logMessage, int revision)
 		{
 			if (!Settings.Default.EnablePostCommitTools)
@@ -93,6 +96,8 @@ namespace TrackGearLibrary
 
 			_baseDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
+			_rewieversFile = Path.Combine(_baseDir ?? "", "conf\\reviewers.txt");
+
 			_changedItems = rawPathList;
 
 			// guess cause
@@ -110,6 +115,8 @@ namespace TrackGearLibrary
 			;
 
 			InitializeComponent();
+
+			fileSystemWatcherReviewers.Path = Path.GetDirectoryName(_rewieversFile);
 
 			if (rallyIssues.Length > 0)
 			{
@@ -496,23 +503,7 @@ $$BODY$$
 
 		void CommitedIssueTools_Load(object sender, EventArgs e)
 		{
-			// fill reviewers
-			var rwFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? "", "conf\\reviewers.txt");
-			if(File.Exists(rwFile))
-			{
-				var reviewers = File.ReadAllLines(rwFile)
-					.Where(l => !string.IsNullOrWhiteSpace(l))
-					.Select(l => new MailAddress(l))
-					.ToArray()
-				;
-
-				comboBoxReviewer.Items.AddRange(reviewers);
-			}
-
-			if(comboBoxReviewer.Items.Count == 0)
-			{
-				comboBoxReviewer.Items.Add("Fill 'conf\\reviewers.txt'");
-			}
+			LoadReviewers();
 
 			var ts = new TaskCompletionSource<string>();
 			_regressionBuild = ts.Task;
@@ -596,29 +587,42 @@ $$BODY$$
 			});
 		}
 
+		void LoadReviewers()
+		{
+			comboBoxReviewer.Items.Clear();
+			comboBoxReviewer.Text = "";
+
+			// fill reviewers
+			if (File.Exists(_rewieversFile))
+			{
+				try
+				{
+					var reviewers = File.ReadAllLines(_rewieversFile)
+						.Select(l => l.Trim())
+						.Where(l => !string.IsNullOrWhiteSpace(l) && !l.StartsWith("#"))
+						.Select(l => new MailAddress(l))
+						.ToArray()
+					;
+
+					comboBoxReviewer.Items.AddRange(reviewers);
+				}
+				catch (Exception ex)
+				{
+					comboBoxReviewer.Items.Add(ex.Message);
+				}
+			}
+
+			comboBoxReviewer.Items.Add(EditReviewers);
+		}
+
 		void comboBoxReviewer_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			UsageMetrics.IncrementUsage(UsageMetrics.UsageKind.CommitToolReviewerChanged);
 
-			// reshuffle
-			var r = comboBoxReviewer.SelectedItem as MailAddress;
-			if(r == null)
-				return;
-
-			var sb = new StringBuilder();
-			sb.AppendLine(r.ToString());
-
-			foreach (var item in comboBoxReviewer.Items)
+			if (ReferenceEquals(comboBoxReviewer.SelectedItem, EditReviewers))
 			{
-				var address = item as MailAddress;
-				if(address == null || ReferenceEquals(item, r))
-					continue;
-
-				sb.AppendLine(address.ToString());
+				Process.Start(_rewieversFile);
 			}
-
-			var rwFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? "", "conf\\reviewers.txt");
-			File.WriteAllText(rwFile, sb.ToString());
 		}
 
 		void buttonPostFDP_Click(object sender, EventArgs e)
@@ -672,6 +676,23 @@ $$BODY$$
 			{
 				buttonPostFDP.Enabled = true;
 				UseWaitCursor = false;
+			}
+		}
+
+		void fileSystemWatcherReviewers_Changed(object sender, FileSystemEventArgs e)
+		{
+			for (int i = 0; i < 3; i++)
+			{
+				try
+				{
+					LoadReviewers();
+					return;
+				}
+				catch (IOException)
+				{
+					// possible 'file already used'. Try 3 times
+					Thread.Sleep(500);
+				}
 			}
 		}
 	}
