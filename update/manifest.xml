@@ -1,8 +1,7 @@
 <manifest>
-	<version>5.0</version>
-	<changelog>changelog.txt</changelog>
-	<setup>https://github.com/azarkevich/TortoiseRally/releases/download/v5.0/Setup.msi</setup>
-	<download>https://github.com/azarkevich/TortoiseRally/releases/tag/v5.0</download>
+	<version>5.1</version>
+	<changelog>_changelog.txt</changelog>
+	<download>https://github.com/azarkevich/TortoiseRally/releases/tag/5.1</download>
 </manifest>
 
 
