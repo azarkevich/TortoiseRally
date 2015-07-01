@@ -51,27 +51,46 @@ namespace TrackGearLibrary
 			if (!Settings.Default.EnablePostCommitTools)
 				return;
 
+			var gitRepos = false;
 			var repoUrl = "";
 			var repoRelPathList = pathList;
 			try
 			{
-				SvnInfoEventArgs info;
-				using (var client = new SvnClient())
+				// ensure it is not git repository
+				var wc = commonRoot;
+				while(wc != null)
 				{
-					client.GetInfo(new SvnPathTarget(commonRoot), out info);
-					repoUrl = info.RepositoryRoot.OriginalString;
+					if (Directory.Exists(Path.Combine(wc, ".svn")))
+						break;
+
+					if (Directory.Exists(Path.Combine(wc, ".git")))
+					{
+						gitRepos = true;
+						break;
+					}
+
+					wc = Path.GetDirectoryName(wc);
 				}
 
-				// calculate paths relative to repository:
-				var commonRootRepoRelPath = info.Uri.OriginalString.Substring(repoUrl.Length).Trim('/');
-				repoRelPathList = pathList
-					.Select(p =>
+				if(!gitRepos)
+				{
+					SvnInfoEventArgs info;
+					using (var client = new SvnClient())
 					{
-						var relToCommon = p.Substring(commonRoot.Length).Replace('\\', '/').TrimStart('/');
-						return commonRootRepoRelPath + "/" + relToCommon;
-					})
-					.ToArray()
-				;
+						client.GetInfo(new SvnPathTarget(commonRoot), out info);
+						repoUrl = info.RepositoryRoot.OriginalString;
+					}
+
+					// calculate paths relative to repository:
+					var commonRootRepoRelPath = info.Uri.OriginalString.Substring(repoUrl.Length).Trim('/');
+					repoRelPathList = pathList
+						.Select(p => {
+							var relToCommon = p.Substring(commonRoot.Length).Replace('\\', '/').TrimStart('/');
+							return commonRootRepoRelPath + "/" + relToCommon;
+						})
+						.ToArray()
+					;
+				}
 			}
 			catch (Exception ex)
 			{
