@@ -26,6 +26,7 @@ How-To Install
 ----
 
 [TortoiseSVN Installation Guide](https://github.com/azarkevich/TortoiseRally/blob/gh-pages/UserGuide/Installation/HowToInstall.md)
+
 [TortoiseGIT Installation Guide](https://github.com/azarkevich/TortoiseRally/blob/gh-pages/UserGuide/Installation/HowToInstallTortoiseGIT.md)
 
 Advanced Usage
