@@ -1,2 +1,6 @@
+5.1
+	Advanced mode: fix issues related to 'decompanyzation' in TortoiseSVN and TortoiseGIT
+	Advanced mode: improve reviewers list editing
+
 5.0
 	First public release
