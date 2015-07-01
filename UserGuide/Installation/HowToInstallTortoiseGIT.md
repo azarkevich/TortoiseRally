@@ -7,8 +7,8 @@ Right click on repository and select TortoiseGIT / Setting / Hook Scripts / Issu
 
 Values:
 
-bugtraq.url : `https://rally1.rallydev.com/#/0/search?keywords=%BUGID%`
-
-Provider uuid win32: `{298B9270-7200-423C-B704-6E241F00CD93}`
-
-Provider uuid x64: `{298B9270-7200-423C-B704-6E241F00CD93}`
+bugtraq.url : `https://rally1.rallydev.com/#/0/search?keywords=%BUGID%`<br/>
+bugtraq.number: `false`<br/>
+bugtraq.logregex: `([Dd][Ee]\d+)`<br/>
+Provider uuid win32: `{298B9270-7200-423C-B704-6E241F00CD93}`<br/>
+Provider uuid x64: `{298B9270-7200-423C-B704-6E241F00CD93}`<br/>
